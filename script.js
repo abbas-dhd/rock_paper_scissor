@@ -7,6 +7,7 @@ function computerPlay() {
 
     return RockPaperScissor[randomNumber];
 }
+
 // function to take input from user, if incorrect input is entered, it will prompt back for proper input.
 function playerPlay() {
     let playerSelection;
@@ -29,7 +30,7 @@ function playerPlay() {
     return playerSelection;
 }
 
-//function that plays one(1) round of the game
+//function that plays one(1) round of the game.
 function playRound(playerSelection, computerSelection) {
     console.log(
         "Player: " + playerSelection + " Computer: " + computerSelection
@@ -66,13 +67,29 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+//function that plays actual game with multiple rounds.
 function playGame() {
-    let playerSelection = playerPlay();
-    let computerSelection = computerPlay();
+    const roundCount = 5;
+    let playerSelection;
+    let computerSelection;
 
-    console.log(
-        "Welcome to Rock Paper Scissor Game! \nThis is 5 round game whoever scores more wins!"
-    );
+    for (let i = 0; i < roundCount; i++) {
+        playerSelection = playerPlay();
+        computerSelection = computerPlay();
+        playRound(playerSelection, computerSelection);
+        // prettier-ignore
+        console.log( "\ncurrent score\nPlayer: " 
+        + playerScore + " Computer: " + computerScore);
+    }
 
-    playRound(playerSelection, computerSelection);
+    if (computerScore < playerScore) console.log("Player Wins!");
+    else if (computerScore > playerScore) console.log("computer Wins!");
+    else console.log("Its a tie");
 }
+
+console.log(
+    "Welcome to Rock Paper Scissor Game! \nThis is 5 round game whoever scores more wins!" +
+        "\n\nPress click button on webpage to start"
+);
+
+// playGame();
