@@ -1,6 +1,3 @@
-const RockPaperScissor = ["ROCK", "PAPER", "SCISSOR"];
-let playerScore = 0;
-let computerScore = 0;
 // function to return a random play by computer.
 function computerPlay() {
     let randomNumber = Math.floor(Math.random() * 3);
@@ -32,6 +29,7 @@ function playerPlay() {
 
 //function that plays one(1) round of the game.
 function playRound(playerSelection, computerSelection) {
+    let currentWinner = "";
     console.log(
         "Player: " + playerSelection + " Computer: " + computerSelection
     );
@@ -41,6 +39,7 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection === "PAPER" && computerSelection === "ROCK") ||
         (playerSelection === "SCISSOR" && computerSelection === "PAPER")
     ) {
+        currentWinner = "player";
         console.log(
             "Player Wins! " +
                 playerSelection +
@@ -54,6 +53,7 @@ function playRound(playerSelection, computerSelection) {
         (computerSelection === "PAPER" && playerSelection === "ROCK") ||
         (computerSelection === "SCISSOR" && playerSelection === "PAPER")
     ) {
+        currentWinner = "computer";
         console.log(
             "Computer Wins! " +
                 computerSelection +
@@ -63,33 +63,111 @@ function playRound(playerSelection, computerSelection) {
         );
         computerScore++;
     } else {
+        currentWinner = "tie";
         console.log("Its a tie");
     }
+
+    updateScoreElement(currentWinner, playerSelection, computerSelection);
 }
 
 //function that plays actual game with multiple rounds.
-function playGame() {
-    const roundCount = 5;
-    let playerSelection;
+function playGame(playerSelection) {
+    // const roundCount = 5;
     let computerSelection;
 
-    for (let i = 0; i < roundCount; i++) {
-        playerSelection = playerPlay();
-        computerSelection = computerPlay();
-        playRound(playerSelection, computerSelection);
-        // prettier-ignore
-        console.log( "\ncurrent score\nPlayer: " 
+    computerSelection = computerPlay();
+    playRound(playerSelection, computerSelection);
+    // prettier-ignore
+    console.log( "\ncurrent score\nPlayer: " 
         + playerScore + " Computer: " + computerScore);
-    }
-
-    if (computerScore < playerScore) console.log("Player Wins!");
-    else if (computerScore > playerScore) console.log("computer Wins!");
-    else console.log("Its a tie");
 }
 
-console.log(
-    "Welcome to Rock Paper Scissor Game! \nThis is 5 round game whoever scores more wins!" +
-        "\n\nPress click button on webpage to start"
-);
+// function to update score in HTML
+function updateScoreElement(currentWinner, playerSelection, computerSelection) {
+    const playerScoreElement = document.getElementById("playerScore");
+    const computerScoreElement = document.getElementById("computerScore");
+    const scoreInfoElement = document.querySelector("#scoreInfo");
+    const scoreMessageElement = document.querySelector("#scoreMessage");
 
-// playGame();
+    playerScoreElement.innerHTML = "Player: " + playerScore;
+    computerScoreElement.innerHTML = "Bot: " + computerScore;
+
+    switch (currentWinner) {
+        case "player":
+            scoreInfoElement.innerHTML = "You Won!";
+            scoreInfoElement.classList.remove("red");
+            scoreInfoElement.classList.remove("yellow");
+            scoreInfoElement.classList.add("green");
+            break;
+        case "computer":
+            scoreInfoElement.innerHTML = "You Lost!";
+            scoreInfoElement.classList.remove("green");
+            scoreInfoElement.classList.remove("yellow");
+            scoreInfoElement.classList.add("red");
+            break;
+        case "tie":
+            scoreInfoElement.innerHTML = "Tied";
+            scoreInfoElement.classList.remove("red");
+            scoreInfoElement.classList.remove("green");
+            scoreInfoElement.classList.add("yellow");
+            break;
+    }
+
+    scoreMessageElement.innerHTML =
+        "You chose " +
+        getSignText(playerSelection) +
+        " and bot chose " +
+        getSignText(computerSelection);
+}
+
+// extra function to get emoji from selection
+function getSignText(sign) {
+    switch (sign) {
+        case "ROCK":
+            return "✊";
+            break;
+        case "PAPER":
+            return "✋";
+            break;
+        case "SCISSOR":
+            return "✌";
+            break;
+    }
+}
+
+// handler for button click event on selecting weapon
+function weaponSelectionHandler(event) {
+    console.log(event.currentTarget.getAttribute("id"));
+    switch (event.currentTarget.getAttribute("id")) {
+        case "rockBtn":
+            playerSelection = "ROCK";
+            break;
+        case "paperBtn":
+            playerSelection = "PAPER";
+            break;
+        case "scissorBtn":
+            playerSelection = "SCISSOR";
+            break;
+        default:
+    }
+
+    playGame(playerSelection);
+}
+
+const RockPaperScissor = ["ROCK", "PAPER", "SCISSOR"];
+let playerScore = 0;
+let computerScore = 0;
+let playerSelection;
+let startButton = document.querySelector("#start-button");
+let mainElement = document.querySelector("main");
+
+startButton.addEventListener("click", function () {
+    mainElement.classList.remove("hidden");
+    startButton.classList.add("hidden");
+});
+
+let weaponButtons = document.querySelectorAll(".btn-square");
+
+weaponButtons.forEach((elem) => {
+    elem.addEventListener("click", weaponSelectionHandler);
+});

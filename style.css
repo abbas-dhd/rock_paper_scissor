@@ -1,0 +1,112 @@
+
+/*  #2C3639 Dark grey
+    #3F4E4F grey
+    #A27B5C brown
+    #DCD7C9 creame (use this for text)
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+  
+body{
+    background-color: #3F4E4F;
+    margin:auto;
+    width: 100%;
+    color: #DCD7C9;
+    text-align: center;
+    font-family: Roboto,sans-serif;
+}
+
+header{
+    background-color: #2C3639;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height: fit-content;
+    padding: 10px;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.scores-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 500px;
+    padding: 10px;
+    margin: 0 auto;
+}
+p{
+    font-size:x-large;
+}
+.score-box{
+    background-color: #2C3639;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.score{
+   padding: 10px;
+}
+.score-info,.score-message{
+    margin: 20px;
+}
+.score-info{
+    font-size: 40px;
+}
+.sign,.btn{
+    width: 150px;
+    height: 150px;
+    font-size: 100px;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn{
+    margin: 10px;
+    padding: auto;
+    background-color: #2C3639;
+}
+
+.btn:hover{
+    background-color: #83a0aa;
+    outline: 2px solid #2C3639;
+    color: #2C3639;
+    cursor: pointer;
+}
+
+main{
+    opacity: 1;
+    transition: 1s;
+}
+
+.hidden{
+    display: none; /* TODO: do some thing about this line to make smooth transition*/
+    opacity: 0;
+    transition: opacity .6s;
+}
+.btn-start{
+    width: fit-content;
+    height: fit-content;
+    padding: 30px;
+    margin-top: 50px;
+    border-radius: 5px;
+    font-size: 40px;
+    color: #DCD7C9;
+}
+
+.red{
+    color: #fb7272
+}
+
+.yellow{
+    color: #fbd172
+}
+.green{
+    color: #99fb72
+}

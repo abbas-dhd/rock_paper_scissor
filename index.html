@@ -4,11 +4,49 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="script.js"></script>
+        <script src="script.js" defer></script>
+        <link rel="stylesheet" href="style.css" />
         <title>Rock Paper Scissor Game</title>
     </head>
     <body>
-        <h1>Use Console to play the game (press F12)</h1>
-        <button onclick="playGame()">Click here to start</button>
+        <header class="header">
+            <h1 class="header-title">Rock Paper Scissor</h1>
+        </header>
+        <button class="btn btn-start" id="start-button">
+            Click here to start
+        </button>
+        <main class="main hidden">
+            <div class="scoreboard">
+                <div class="scores-container">
+                    <div class="score-box">
+                        <div class="sign" id="playerSign">👦</div>
+                        <p class="score" id="playerScore">Player: 0</p>
+                    </div>
+                    <div class="score-box">
+                        <div class="sign" id="computerSign">🤖</div>
+                        <p class="score" id="computerScore">Bot: 0</p>
+                    </div>
+                </div>
+                <h2 class="score-info" id="scoreInfo">Choose your weapon</h2>
+                <h3 class="score-message" id="scoreMessage">
+                    Let the strongest win!
+                </h3>
+            </div>
+            <div class="buttons">
+                <button class="btn btn-square" id="rockBtn">
+                    <div class="sign">✊</div>
+                </button>
+                <button class="btn btn-square" id="paperBtn">
+                    <div class="sign">✋</div>
+                </button>
+                <button class="btn btn-square" id="scissorBtn">
+                    <div class="sign">✌</div>
+                </button>
+            </div>
+        </main>
+        <footer class="footer"></footer>
+
+        <!-- <h1>Use Console to play the game (press F12)</h1>
+        <button onclick="playGame()">Click here to start</button> -->
     </body>
 </html>
