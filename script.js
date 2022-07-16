@@ -77,9 +77,27 @@ function playGame(playerSelection) {
 
     computerSelection = computerPlay();
     playRound(playerSelection, computerSelection);
-    // prettier-ignore
-    console.log( "\ncurrent score\nPlayer: " 
-        + playerScore + " Computer: " + computerScore);
+
+    if (playerScore === 5 || computerScore === 5) {
+        gameOverTextElement = document.createElement("h1");
+
+        if (playerScore > computerScore) {
+            gameOverTextElement.innerHTML = "Player Wins";
+            gameOverTextElement.className = "score-info green";
+        } else {
+            gameOverTextElement.innerHTML = "Computer Wins";
+            gameOverTextElement.className = "score-info red";
+        }
+        mainElement.classList.add("hidden");
+        gameOverElement.classList.remove("hidden");
+        gameOverElement.appendChild(gameOverTextElement);
+    }
+    console.log(
+        "\ncurrent score\nPlayer: " +
+            playerScore +
+            " Computer: " +
+            computerScore
+    );
 }
 
 // function to update score in HTML
@@ -88,7 +106,6 @@ function updateScoreElement(currentWinner, playerSelection, computerSelection) {
     const computerScoreElement = document.getElementById("computerScore");
     const scoreInfoElement = document.querySelector("#scoreInfo");
     const scoreMessageElement = document.querySelector("#scoreMessage");
-
     playerScoreElement.innerHTML = "Player: " + playerScore;
     computerScoreElement.innerHTML = "Bot: " + computerScore;
 
@@ -154,12 +171,20 @@ function weaponSelectionHandler(event) {
     playGame(playerSelection);
 }
 
+// handler function to restart the game (refresh window)
+function restartHandler(event) {
+    console.log("adsad");
+
+    window.location.reload();
+}
+
 const RockPaperScissor = ["ROCK", "PAPER", "SCISSOR"];
 let playerScore = 0;
 let computerScore = 0;
 let playerSelection;
-let startButton = document.querySelector("#start-button");
-let mainElement = document.querySelector("main");
+const startButton = document.querySelector("#start-button");
+const mainElement = document.querySelector("main");
+const gameOverElement = document.querySelector(".game-over");
 
 startButton.addEventListener("click", function () {
     mainElement.classList.remove("hidden");
@@ -171,3 +196,5 @@ let weaponButtons = document.querySelectorAll(".btn-square");
 weaponButtons.forEach((elem) => {
     elem.addEventListener("click", weaponSelectionHandler);
 });
+
+gameOverElement.firstElementChild.addEventListener("click", restartHandler);

@@ -12,17 +12,17 @@
         <header class="header">
             <h1 class="header-title">Rock Paper Scissor</h1>
         </header>
-        <button class="btn btn-start" id="start-button">
+        <button class="btn btn-txt" id="start-button">
             Click here to start
         </button>
         <main class="main hidden">
             <div class="scoreboard">
                 <div class="scores-container">
-                    <div class="score-box">
+                    <div class="score-box player-box">
                         <div class="sign" id="playerSign">👦</div>
                         <p class="score" id="playerScore">Player: 0</p>
                     </div>
-                    <div class="score-box">
+                    <div class="score-box computer-box">
                         <div class="sign" id="computerSign">🤖</div>
                         <p class="score" id="computerScore">Bot: 0</p>
                     </div>
@@ -44,6 +44,10 @@
                 </button>
             </div>
         </main>
+
+        <div class="game-over hidden">
+            <button class="btn btn-txt">Restart</button>
+        </div>
         <footer class="footer"></footer>
 
         <!-- <h1>Use Console to play the game (press F12)</h1>

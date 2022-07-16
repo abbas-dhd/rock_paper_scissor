@@ -90,7 +90,7 @@ main{
     opacity: 0;
     transition: opacity .6s;
 }
-.btn-start{
+.btn-txt{
     width: fit-content;
     height: fit-content;
     padding: 30px;
@@ -101,12 +101,12 @@ main{
 }
 
 .red{
-    color: #fb7272
+    color: #fb7272;
 }
 
 .yellow{
-    color: #fbd172
+    color: #fbd172;
 }
 .green{
-    color: #99fb72
+    color: #99fb72;
 }
